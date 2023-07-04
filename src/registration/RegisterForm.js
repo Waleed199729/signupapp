@@ -26,34 +26,35 @@ function RegisterForm() {
   const initialValues = {
     firstname: "",
     lastname: "",
+    email: "",
     password: "",
     confirmpassword: "",
     country_code: "",
     phone_no: "",
-    reffered_by: "",
+    // reffered_by: "",
   };
 
   const validationSchema = Yup.object().shape({
     firstname: Yup.string().required("Firstname is required"),
     lastname: Yup.string().required("Lastname is required"),
+    email: Yup.string().required("Email is required"),
     password: Yup.string().required("Password is required"),
     confirmpassword: Yup.string().required("Confirm Password is required"),
     country_code: Yup.string().required("Country Code is required"),
     phone_no: Yup.string().required("Phone No is required"),
-    agreeTerms: Yup.boolean().oneOf(
-      [true],
-      "You must accept the terms and conditions"
-    ),
+    // agreeTerms: Yup.boolean().oneOf(
+    //   [true],
+    //   "You must accept the terms and conditions"
+    // ),
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    // const newUser = { ...values };
+    alert("You are Successfully Registered");
 
-    alert("Register Button");
-    // console.log("Form values", newUser);
+    console.log("Form values", values);
 
     dispatch(signUpSuccess(values));
-    navigate("/");
+    navigate("/pin_verify");
 
     resetForm();
   };
@@ -62,6 +63,15 @@ function RegisterForm() {
     <MDBContainer fluid>
       <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
         <MDBCardBody>
+          <MDBBtn
+            type="btn"
+            variant="gradient"
+            className="ms-5 mb-4"
+            size="lg"
+            onClick={() => navigate("/")}
+          >
+            Login
+          </MDBBtn>
           <MDBRow>
             <MDBCol
               md="10"
@@ -109,6 +119,23 @@ function RegisterForm() {
                       />
                       <ErrorMessage
                         name="lastname"
+                        variant="caption"
+                        color="error"
+                      />
+                    </div>
+
+                    <div className="d-flex flex-row align-items-center mb-4 ">
+                      <MDBIcon fas icon="user me-3" size="lg" />
+                      <Field
+                        name="email"
+                        type="email"
+                        label="Email"
+                        placeholder="Enter Email"
+                        variant="standard"
+                        className="w-100"
+                      />
+                      <ErrorMessage
+                        name="email"
                         variant="caption"
                         color="error"
                       />
@@ -181,7 +208,7 @@ function RegisterForm() {
                       />
                     </div>
 
-                    <div className="d-flex flex-row align-items-center mb-4">
+                    {/* <div className="d-flex flex-row align-items-center mb-4">
                       <MDBIcon fas icon="asterisk me-3" size="lg" />
                       <Field
                         name="reffered_by"
@@ -196,7 +223,7 @@ function RegisterForm() {
                         variant="caption"
                         color="error"
                       />
-                    </div>
+                    </div> */}
 
                     {/* <div className="d-flex flex-row align-items-center mb-4">
                       <MDBIcon fas icon="key me-3" size="lg" />
@@ -214,15 +241,6 @@ function RegisterForm() {
                       size="lg"
                     >
                       Register
-                    </MDBBtn>
-                    <MDBBtn
-                      type="btn"
-                      variant="gradient"
-                      className="ms-5 mb-4"
-                      size="lg"
-                      onClick={() => navigate("/login_page")}
-                    >
-                      Login
                     </MDBBtn>
                   </Form>
                 )}

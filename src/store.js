@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { signUpReducer } from "./redux/userReducer";
+import { pinVerifyReducer, signUpReducer } from "./redux/userReducer";
 import thunkMiddleWare from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 // store main reducers sy pass hony wala data save krna

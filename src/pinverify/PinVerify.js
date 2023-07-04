@@ -14,41 +14,30 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loginSuccess } from "../redux/Action";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { pinVerify } from "../redux/Action";
 
-const Login = () => {
-  const token = useSelector(
-    (state) => state?.signUpUsers?.pinVerificationData?.data?.auth_token
-  );
-  // console.log("token login", token);
-
+const PinVerify = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const initialValues = {
-    email: "",
-    password: "",
+    phone_no: "",
+    phone_pin: "",
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required("Email is required"),
-    password: Yup.string().required("Password is required"),
+    phone_no: Yup.string().required("No. is required"),
+    phone_pin: Yup.string().required("Pin is required"),
   });
 
-  // const handleSubmit = (values, { resetForm }) => {
-  //   const newUser = { ...values, id: uuidv4() };
-  //   alert("Register Button");
-  //   console.log("Form values", newUser);
-  //   resetForm();
-  // };
-
   const handleSubmit = async (values, { resetForm }) => {
-    const newUser = { ...values, id: uuidv4() };
+    alert("Pin Clicked");
 
-    dispatch(loginSuccess(values));
+    dispatch(pinVerify(values));
 
-    navigate("/home");
+    navigate("/");
     resetForm();
   };
 
@@ -63,7 +52,7 @@ const Login = () => {
               className="order-2 order-lg-1 d-flex flex-column align-items-center"
             >
               <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                Log In
+                Pin Verification
               </p>
 
               <Formik
@@ -77,15 +66,15 @@ const Login = () => {
                     <div className="d-flex flex-row align-items-center mb-4 ">
                       <MDBIcon fas icon="user me-3" size="lg" />
                       <Field
-                        name="email"
-                        type="email"
-                        label="Email"
-                        placeholder="Enter Email"
+                        name="phone_no"
+                        type="text"
+                        label="Phone No"
+                        placeholder="Enter the Phone No"
                         variant="standard"
                         className="w-100"
                       />
                       <ErrorMessage
-                        name="email"
+                        name="phone_no"
                         variant="caption"
                         color="error"
                       />
@@ -94,15 +83,15 @@ const Login = () => {
                     <div className="d-flex flex-row align-items-center mb-4">
                       <MDBIcon fas icon="lock me-3" size="lg" />
                       <Field
-                        name="password"
+                        name="phone_pin"
                         type="password"
-                        label="Password"
-                        placeholder="Enter the Password"
+                        label="Phone Pin"
+                        placeholder="Enter the Phone Pin"
                         variant="standard"
                         className="w-100"
                       />
                       <ErrorMessage
-                        name="password"
+                        name="phone_pin"
                         variant="caption"
                         color="error"
                       />
@@ -124,18 +113,7 @@ const Login = () => {
                       className="mb-4"
                       size="lg"
                     >
-                      Login
-                    </MDBBtn>
-
-                    <MDBBtn
-                      type="submit"
-                      enable={isSubmitting}
-                      variant="gradient"
-                      className="ms-4 mb-4"
-                      onClick={() => navigate("/register")}
-                      size="lg"
-                    >
-                      Sign Up
+                      Verify
                     </MDBBtn>
                   </Form>
                 )}
@@ -148,4 +126,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default PinVerify;
