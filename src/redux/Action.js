@@ -101,26 +101,52 @@ export const loginSuccess = (user) => {
         "http://demoapi.gharpar.co/api/v8/user_sessions.json",
         usersLogin
       );
-      localStorage.setItem("LoginAuthToken", response.data.auth_token);
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: response,
-      });
-      console.log("API Login response:", response.data);
+
+      if (response.status === 200) {
+        localStorage.setItem("LoginAuthToken", response.data.auth_token);
+        console.log("user data response", response.data.email);
+
+        const userObject = {
+          id: response.data.id,
+          email: response.data.email,
+          first_name: response.data.first_name,
+          last_name: response.data.last_name,
+          user_status: response.data.user_status,
+          country_code: response.data.country_code,
+          phone: response.data.phone,
+        };
+        // ye Convert kare ga object ko JSON string me
+        const userObjectString = JSON.stringify(userObject);
+
+        // ye Store kare ga stringified object into local storage
+        localStorage.setItem("user's data", userObjectString);
+
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: response,
+        });
+        alert("Are you sure you want to log in?");
+        console.log("API Login response:", response.data);
+        console.log("API Login response:", response.status);
+      }
     } catch (error) {
-      dispatch({
-        type: LOGIN_FAIL,
-        payload: error,
-      });
-      console.log("API Login error:", error);
+      if (error.response.status === 400) {
+        alert("Invalid credential");
+        dispatch({
+          type: LOGIN_FAIL,
+          payload: error,
+        });
+      }
+
+      console.log("API Login error:", error.response.status);
     }
   };
 };
 
-export const logout = () => {
+export const logout = (navigate) => {
   return async (dispatch) => {
     try {
-      await axios.post(
+      const response = await axios.post(
         "http://demoapi.gharpar.co/api/v8/user_sessions/logout.json",
         {},
         {
@@ -131,13 +157,16 @@ export const logout = () => {
         }
       );
 
-      dispatch({
-        type: LOGOUT_SUCCESS,
-      });
-
-      localStorage.clear();
-      sessionStorage.clear();
-      alert("Successfully logged out.");
+      if (response.status === 200) {
+        dispatch({
+          type: LOGOUT_SUCCESS,
+        });
+        alert("Are you sure you want to logout.");
+        localStorage.clear();
+        sessionStorage.clear();
+        navigate("/login");
+      }
+      console.log("Logout Response: ", response.status); //it will give response 200 (Successful )
     } catch (error) {
       dispatch({
         type: LOGOUT_FAIL,

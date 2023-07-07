@@ -68,7 +68,7 @@ function RegisterForm() {
             variant="gradient"
             className="ms-5 mb-4"
             size="lg"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/login")}
           >
             Login
           </MDBBtn>

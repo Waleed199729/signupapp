@@ -54,6 +54,7 @@ export const signUpReducer = (state = initialState, action) => {
         pinVerificationData: action.payload,
         error: null,
       };
+
     case LOGIN_FAIL:
       return {
         ...state,
@@ -63,11 +64,12 @@ export const signUpReducer = (state = initialState, action) => {
 
     case LOGOUT_SUCCESS:
       return {
-        ...state,
+        state,
         loading: false,
         logoutData: action.payload,
         error: null,
       };
+
     case LOGOUT_FAIL:
       return {
         ...state,

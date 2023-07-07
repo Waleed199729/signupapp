@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
@@ -43,24 +43,42 @@ const Login = () => {
   //   resetForm();
   // };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values) => {
     const newUser = { ...values, id: uuidv4() };
 
     dispatch(loginSuccess(values));
-
-    navigate("/home");
-    resetForm();
+    // navigate("/");
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   return (
     <MDBContainer fluid>
       <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
         <MDBCardBody>
           <MDBRow>
+            <MDBCol>
+              <MDBBtn
+                variant="gradient"
+                className="ms-5 mb-4"
+                onClick={() => navigate("/register")}
+                size="lg"
+              >
+                Sign Up
+              </MDBBtn>
+              <p className="ms-5">Here You Can Sign Up</p>
+              <MDBCardImage
+                src="https://mdbootstrap.com/img/new/fluid/city/055.webp"
+                fluid
+              />
+            </MDBCol>
             <MDBCol
-              md="10"
-              lg="6"
-              className="order-2 order-lg-1 d-flex flex-column align-items-center"
+              center
+              className=" order-2 order-lg-1 d-flex flex-column align-items-center float-start m-5"
             >
               <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                 Log In
@@ -125,17 +143,6 @@ const Login = () => {
                       size="lg"
                     >
                       Login
-                    </MDBBtn>
-
-                    <MDBBtn
-                      type="submit"
-                      enable={isSubmitting}
-                      variant="gradient"
-                      className="ms-4 mb-4"
-                      onClick={() => navigate("/register")}
-                      size="lg"
-                    >
-                      Sign Up
                     </MDBBtn>
                   </Form>
                 )}
