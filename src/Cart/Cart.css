@@ -1,0 +1,47 @@
+/* .container {
+  padding: 0;
+  margin: 0;
+} */
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 45px;
+  width: 225%;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(199, 42, 42, 0.2);
+  background-color: rgba(250, 243, 243, 0.2);
+}
+
+h3 {
+  text-align: center;
+}
+
+.popoup > form > label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.button {
+  display: flex;
+  float: left;
+  padding: 2rem 2rem 0rem 0rem;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+/* .btn {
+    /* Add your button styles here */

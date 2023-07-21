@@ -1,0 +1,42 @@
+.signup_button {
+  float: right;
+  margin-right: 4rem;
+  margin-top: -35rem;
+  position: relative;
+}
+
+.signup-text {
+  font-family: Agdasima;
+  font-size: 28px;
+  letter-spacing: 0px;
+  word-spacing: 2.2px;
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+.login_text {
+  float: right;
+  font-family: Agdasima;
+  color: rgb(164, 159, 159);
+  margin-top: 1rem;
+  letter-spacing: 0px;
+  word-spacing: 2.2px;
+  font-weight: 100;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+.login_textt {
+  float: left;
+  font-family: Agdasima;
+  color: rgb(164, 159, 159);
+  letter-spacing: 0px;
+  word-spacing: 2.2px;
+  font-weight: 100;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}

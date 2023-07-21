@@ -16,6 +16,7 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+
 import { Navigate, useNavigate } from "react-router-dom";
 
 function RegisterForm() {
@@ -26,7 +27,6 @@ function RegisterForm() {
   const initialValues = {
     firstname: "",
     lastname: "",
-    email: "",
     password: "",
     confirmpassword: "",
     country_code: "",
@@ -37,7 +37,6 @@ function RegisterForm() {
   const validationSchema = Yup.object().shape({
     firstname: Yup.string().required("Firstname is required"),
     lastname: Yup.string().required("Lastname is required"),
-    email: Yup.string().required("Email is required"),
     password: Yup.string().required("Password is required"),
     confirmpassword: Yup.string().required("Confirm Password is required"),
     country_code: Yup.string().required("Country Code is required"),
@@ -49,11 +48,12 @@ function RegisterForm() {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    alert("You are Successfully Registered");
+    // alert("You are Successfully Registered");
 
-    console.log("Form values", values);
+    const newUser = { ...values, id: uuidv4() };
 
-    dispatch(signUpSuccess(values));
+    dispatch(signUpSuccess(newUser));
+
     navigate("/pin_verify");
 
     resetForm();
@@ -124,23 +124,6 @@ function RegisterForm() {
                       />
                     </div>
 
-                    <div className="d-flex flex-row align-items-center mb-4 ">
-                      <MDBIcon fas icon="user me-3" size="lg" />
-                      <Field
-                        name="email"
-                        type="email"
-                        label="Email"
-                        placeholder="Enter Email"
-                        variant="standard"
-                        className="w-100"
-                      />
-                      <ErrorMessage
-                        name="email"
-                        variant="caption"
-                        color="error"
-                      />
-                    </div>
-
                     <div className="d-flex flex-row align-items-center mb-4">
                       <MDBIcon fas icon="lock me-3" size="lg" />
                       <Field
@@ -178,12 +161,19 @@ function RegisterForm() {
                       <MDBIcon fas icon="earth-europe me-3" size="lg" />
                       <Field
                         name="country_code"
+                        as="select"
                         type="text"
                         label="Country_Code"
                         placeholder="Country Code"
                         variant="standard"
                         className="w-100"
-                      />
+                      >
+                        <option value="">Select Country Code</option>
+                        <option value="Pakistan">+92</option>
+                        <option value="Saudia">+966</option>
+                        <option value="UAE">+971</option>
+                        <option value="US">+1</option>
+                      </Field>
                       <ErrorMessage
                         name="country_code"
                         variant="caption"

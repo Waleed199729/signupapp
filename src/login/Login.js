@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import "./Login.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { v4 as uuidv4 } from "uuid";
+import Swal from "sweetalert2";
+
 import {
   MDBBtn,
   MDBContainer,
@@ -14,25 +16,29 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import Tom from "../images/tom.jpg";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../redux/Action";
 
 const Login = () => {
   const token = useSelector(
-    (state) => state?.signUpUsers?.pinVerificationData?.data?.auth_token
+    (state) => state?.signUpUser?.pinVerificationData?.data?.auth_token
   );
-  // console.log("token login", token);
+  console.log("Token Login", token);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const initialValues = {
-    email: "",
+    country_code: "",
+    phone_no: "",
     password: "",
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required("Email is required"),
+    country_code: Yup.string().required("Country Code is required"),
+    phone_no: Yup.string().required("Phone_no is required"),
     password: Yup.string().required("Password is required"),
   });
 
@@ -44,9 +50,10 @@ const Login = () => {
   // };
 
   const handleSubmit = async (values) => {
-    const newUser = { ...values, id: uuidv4() };
+    // console.log("login valuessss", values);
 
-    dispatch(loginSuccess(values));
+    dispatch(loginSuccess(values, navigate));
+
     // navigate("/");
   };
 
@@ -61,20 +68,12 @@ const Login = () => {
       <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
         <MDBCardBody>
           <MDBRow>
-            <MDBCol>
-              <MDBBtn
-                variant="gradient"
-                className="ms-5 mb-4"
-                onClick={() => navigate("/register")}
-                size="lg"
-              >
-                Sign Up
-              </MDBBtn>
-              <p className="ms-5">Here You Can Sign Up</p>
-              <MDBCardImage
-                src="https://mdbootstrap.com/img/new/fluid/city/055.webp"
-                fluid
-              />
+            <MDBCol className="">
+              <p className="signup-text ms-5">
+                Choosing a hard-to-guess, but easy-to-remember password is
+                important!
+              </p>
+              <MDBCardImage src={Tom} fluid />
             </MDBCol>
             <MDBCol
               center
@@ -93,17 +92,34 @@ const Login = () => {
                 {({ isSubmitting }) => (
                   <Form>
                     <div className="d-flex flex-row align-items-center mb-4 ">
-                      <MDBIcon fas icon="user me-3" size="lg" />
+                      <MDBIcon fas icon="earth-europe me-3" size="lg" />
                       <Field
-                        name="email"
-                        type="email"
-                        label="Email"
-                        placeholder="Enter Email"
+                        name="country_code"
+                        type="text"
+                        label="Country_Code"
+                        placeholder="Country Code"
                         variant="standard"
                         className="w-100"
                       />
                       <ErrorMessage
-                        name="email"
+                        name="country_code"
+                        variant="caption"
+                        color="error"
+                      />
+                    </div>
+
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <MDBIcon fas icon="phone me-3" size="lg" />
+                      <Field
+                        name="phone_no"
+                        type="text"
+                        label="Phone no"
+                        placeholder="Phone_No"
+                        variant="standard"
+                        className="w-100"
+                      />
+                      <ErrorMessage
+                        name="phone_no"
                         variant="caption"
                         color="error"
                       />
@@ -144,11 +160,23 @@ const Login = () => {
                     >
                       Login
                     </MDBBtn>
+
+                    <p className="login_text ms-3">
+                      <p className="login_textt me-3">Or</p>SignUp for Login
+                    </p>
                   </Form>
                 )}
               </Formik>
             </MDBCol>
           </MDBRow>
+          <MDBBtn
+            variant="gradient"
+            className="signup_button ms-5 mb-4"
+            onClick={() => navigate("/register")}
+            size="lg"
+          >
+            Sign Up
+          </MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </MDBContainer>

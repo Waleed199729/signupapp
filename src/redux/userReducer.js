@@ -10,39 +10,35 @@ import {
 } from "./Action";
 
 const initialState = {
-  loading: true,
-  users: [],
-  error: null,
-  pinVerificationData: null,
-  logoutData: null,
+  user: {
+    error: null,
+    pinVerificationData: null,
+  },
 };
 
 export const signUpReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGNUP_SUCCESS:
+      // debugger;
       return {
-        loading: true,
         users: action.payload,
-        error: null,
       };
+
     case SIGNUP_FAIL:
       return {
-        loading: false,
         ...state,
         error: action.payload,
       };
 
     case PIN_VERIFY_SUCCESS:
+      // debugger;
       return {
         ...state,
-        loading: false,
         pinVerificationData: action.payload,
-        error: null,
       };
     case PIN_VERIFY_FAIL:
       return {
         ...state,
-        loading: false,
         pinVerificationData: null,
         error: action.payload,
       };
@@ -50,31 +46,27 @@ export const signUpReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        loading: false,
+
         pinVerificationData: action.payload,
-        error: null,
       };
 
     case LOGIN_FAIL:
       return {
         ...state,
-        loading: false,
+
         error: action.payload,
       };
 
     case LOGOUT_SUCCESS:
       return {
         state,
-        loading: false,
+
         logoutData: action.payload,
-        error: null,
       };
 
     case LOGOUT_FAIL:
       return {
         ...state,
-        loading: false,
-        logoutData: null,
         error: action.payload,
       };
 

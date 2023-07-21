@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
@@ -14,30 +14,43 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { pinVerify } from "../redux/Action";
 
 const PinVerify = () => {
+  // const userCellNo = localStorage.getItem("PinStorage");
+  // // console.log("userCellNo", userCellNo);
+  // const CellNo = JSON.parse(userCellNo.phone);
+  // console.log("CEll:", CellNo);
+  // const userCellNo = localStorage.getItem("PinStorage");
+  // const cellNo = userCellNo.split(" ")[0];
+
+  // const userCellNoString = localStorage.getItem("Home Verification");
+  // const userCellNoObject = JSON.parse(userCellNoString);
+  // const userCellNo = userCellNoObject.phone;
+
+  // console.log("Cellllllllll noooo", userCellNo);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const initialValues = {
-    phone_no: "",
+    // phone_no: userCellNo,
     phone_pin: "",
   };
 
   const validationSchema = Yup.object().shape({
-    phone_no: Yup.string().required("No. is required"),
+    // phone_no: Yup.string().required("No. is required"),
     phone_pin: Yup.string().required("Pin is required"),
   });
 
   const handleSubmit = async (values, { resetForm }) => {
-    alert("Pin Clicked");
+    // alert("Pin Clicked");
 
-    dispatch(pinVerify(values));
-
-    navigate("/login");
+    dispatch(pinVerify(values, navigate));
+    // navigate("/");
     resetForm();
   };
 
@@ -63,7 +76,7 @@ const PinVerify = () => {
               >
                 {({ isSubmitting }) => (
                   <Form>
-                    <div className="d-flex flex-row align-items-center mb-4 ">
+                    {/* <div className="d-flex flex-row align-items-center mb-4 ">
                       <MDBIcon fas icon="user me-3" size="lg" />
                       <Field
                         name="phone_no"
@@ -78,7 +91,7 @@ const PinVerify = () => {
                         variant="caption"
                         color="error"
                       />
-                    </div>
+                    </div> */}
 
                     <div className="d-flex flex-row align-items-center mb-4">
                       <MDBIcon fas icon="lock me-3" size="lg" />

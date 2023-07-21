@@ -1,0 +1,25 @@
+:root {
+  --landscape-width: 25; /*// % OR vw for responsive window resizing!*/
+  --portrait-width: 80vw;
+  --header-height: 4rem;
+  --secs: 0.4s;
+  --bg-left: springgreen;
+  --bg-right: cyan;
+  --bg-main: lemonchiffon;
+}
+
+.navbar-nav a {
+  font-size: 18px;
+}
+
+.navbar {
+  background-color: #fff;
+}
+
+div > span:nth-child(1) {
+  padding: 0rem 1rem 0rem 1rem;
+
+  box-shadow: 2px 2px 5px rgba(46, 30, 30, 0.5);
+  background-color: rgb(13, 14, 13);
+  border-radius: 0.5rem;
+}

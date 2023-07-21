@@ -1,10 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { pinVerifyReducer, signUpReducer } from "./redux/userReducer";
+import { signUpReducer } from "./redux/userReducer";
+
 import thunkMiddleWare from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import handleCart from "./redux/productReducer";
 // store main reducers sy pass hony wala data save krna
 const rootReducer = combineReducers({
-  signUpUsers: signUpReducer,
+  signUpUser: signUpReducer,
+  handleCart,
 });
 
 const store = createStore(
