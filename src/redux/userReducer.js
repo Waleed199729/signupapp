@@ -15,6 +15,7 @@ const initialState = {
     pinVerificationData: null,
   },
 };
+// console.log("ini state", initialState);
 
 export const signUpReducer = (state = initialState, action) => {
   switch (action.type) {

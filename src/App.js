@@ -14,6 +14,12 @@ import PlaceOrderScreen from "./placeOrderScreen/PlaceOrderScreen";
 import OrderHistory from "./orderhistory/OrderHistory";
 
 import LoginProtectedRoute from "./Protected Routes/LoginProtectedRoute";
+import Footer from "./components/Footer";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Products from "./Products/ProductsScreen";
+import PublicRoute from "./Protected Routes/PublicRoute";
+import PrivateRoute from "./Protected Routes/PrivateRoute";
 
 const App = () => {
   // const [isSignedIn, setIsSignedIn] = useState(null);
@@ -31,6 +37,13 @@ const App = () => {
   // }, []);
 
   return (
+    //  {
+    //    token ? (
+    //      <Route path="/home" element={<Home />} />
+    //    ) : (
+    //      <Route path="/" element={<Login />} />
+    //    );
+    //  }
     <>
       <Router>
         <Routes>
@@ -44,8 +57,17 @@ const App = () => {
           />
           <Route path="/" element={<LoginProtectedRoute Component={Home} />} />
           <Route
-            path=""
+            path="/productsscreen"
             element={<LoginProtectedRoute Component={ProductsScreen} />}
+          />
+
+          <Route
+            path="/about"
+            element={<LoginProtectedRoute Component={About} />}
+          />
+          <Route
+            path="/contactus"
+            element={<LoginProtectedRoute Component={Contact} />}
           />
           <Route
             path="/products/:id"
@@ -69,6 +91,7 @@ const App = () => {
             element={<LoginProtectedRoute Component={Login} />}
           />
         </Routes>
+        <Footer />
       </Router>
     </>
   );
@@ -76,10 +99,18 @@ const App = () => {
 
 export default App;
 
-//  {
-//    token ? (
-//      <Route path="/home" element={<Home />} />
-//    ) : (
-//      <Route path="/" element={<Login />} />
-//    );
-//  }
+//  <Router>
+//    <Routes>
+//      <Route path="/" element={<PrivateRoute component={Home} exact />} />
+//      <Route
+//        element={
+//          <PublicRoute
+//            restricted={true}
+//            component={RegisterForm}
+//            path="/register"
+//            exact
+//          />
+//        }
+//      />
+//    </Routes>
+//  </Router>;

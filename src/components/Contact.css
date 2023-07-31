@@ -1,0 +1,10 @@
+.contact {
+    margin: 20px;
+}
+.contact-row {
+    width: 100%;
+    display:flex;
+    /* padding: 45px; */
+    margin-top: 0rem;
+    
+}

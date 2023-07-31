@@ -50,18 +50,19 @@ const OrderHistory = () => {
 
   return (
     <>
-      <div>
+      <div className="container my-3 py-5">
         <center>
-          <h2 className="mt-5"> Order History</h2>
+          <h2 className="text-black display-6 fw-bolder text-center">
+            Order History
+          </h2>
         </center>
         <Container className="mt--7" fluid>
           <div className=" mt-5">
             <Button
-              className="ms-3"
+              className=""
               responsive
               onClick={() => navigate("/placeorder")}
-              color="primary"
-              type="submit"
+              // color="primary"
             >
               Go Back
             </Button>
@@ -159,13 +160,12 @@ const OrderHistory = () => {
               </div>
             </Col>
           </Row>
+          <div className="mt-5 ">
+            <Link to="/cart" onClick={handleClick}>
+              <button className="btn btn-outline-dark px-4 py-2">Finish</button>
+            </Link>
+          </div>
         </Container>
-      </div>
-
-      <div className="mt-5 ms-5">
-        <Link to="/cart" onClick={handleClick}>
-          <button className="btn btn-outline-dark px-4 py-2">Finish</button>
-        </Link>
       </div>
     </>
   );

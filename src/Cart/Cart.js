@@ -9,7 +9,7 @@ import {
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
-import { Modal, ModalHeader } from "reactstrap";
+import { Button, Modal, ModalHeader } from "reactstrap";
 import Navbar from "../components/Navbar";
 
 const Cart = () => {
@@ -43,15 +43,16 @@ const Cart = () => {
 
   const renderCartItems = () => {
     return cartItems?.map((cartItem) => (
-      <div className="px-4 my-5 bg-light rounded-3" key={cartItem.id}>
+      <div
+        className="cart_container text-black-50 px-4 my-5 bg-light rounded-3 shadow"
+        key={cartItem.id}
+      >
         <div className="container py-4">
           <button
             onClick={() => handleClose(cartItem)}
             className="btn-close float-end"
             aria-label="Close"
-          >
-            {" "}
-          </button>
+          ></button>
           <div className="row justify-content-center">
             <div className="col-md-4">
               <img
@@ -65,11 +66,21 @@ const Cart = () => {
               <h3>{cartItem.title}</h3>
               <p className="lead fw-bold">${cartItem.price}</p>
 
-              <div className="quantity row justify-content-center">
+              <div className="quantity_btn_container row justify-content-center">
                 <div className="col-md-4">
-                  <button onClick={() => handleDecrement(cartItem)}>-</button>
+                  <Button
+                    className="increment_buton"
+                    onClick={() => handleDecrement(cartItem)}
+                  >
+                    -
+                  </Button>
                   <span>{cartItem.qty} </span>
-                  <button onClick={() => handleIncrement(cartItem)}>+</button>
+                  <Button
+                    className="decrement_buton"
+                    onClick={() => handleIncrement(cartItem)}
+                  >
+                    +
+                  </Button>
                 </div>
 
                 <div className="col-md-4">
@@ -220,9 +231,8 @@ const Cart = () => {
         <div className="container my-3 py-5 ">
           <div className="row ">
             <div className="col-12 mb-5">
-              <h2 className="display-6 fw-bolder text-center">
-                {" "}
-                Shopping Cart <hr />{" "}
+              <h2 className="text-black display-6 fw-bolder text-center">
+                Shopping Cart <hr />
               </h2>
               {cartItems?.length === 0 ? renderEmptyCart() : renderCartItems()}
               {cartItems?.length !== 0 && renderButton()}

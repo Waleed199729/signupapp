@@ -1,0 +1,9 @@
+.about {
+  margin: 20px;
+}
+.about-row {
+  width: 100%;
+  display: flex;
+  /* padding: 45px; */
+  margin-top: 0rem;
+}

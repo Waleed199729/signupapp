@@ -48,9 +48,13 @@ function RegisterForm() {
   });
 
   const handleSubmit = (values, { resetForm }) => {
+    //It is called Shallow copying of Array
+    //  const [items, setItems] = useState([ 'apply', 'orange', 'banana' ]);
+    //  const newItem = [ ...items, 'apply' ];
+
     // alert("You are Successfully Registered");
 
-    const newUser = { ...values, id: uuidv4() };
+    const newUser = { ...values, id: uuidv4() }; //It is called Shallow copying of Object
 
     dispatch(signUpSuccess(newUser));
 

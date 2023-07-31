@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Products.css";
 import { NavLink, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 // import ClotheAnimate from "../Animations/ClotheAnimate.json";
 // import ClotheLogo from "../Animations/ClotheLogo.json";
 // import Lottie from "lottie-react";
@@ -126,39 +127,42 @@ const Products = () => {
   };
 
   return (
-    <motion.div
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
-    >
-      <div className="container my-5 py-5">
-        {/* <Lottie
+    <>
+      <Navbar />
+      <motion.div
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+      >
+        <div className="container my-5 py-5">
+          {/* <Lottie
           style={{ height: 300, float: "right", marginLeft: "-50rem" }}
           loop={true}
           autoPlay
           animationData={ClotheAnimate}
         /> */}
 
-        <div className="row">
-          <div className="col-12 mb-5">
-            <h1 className="display-6 fw-bolder text-center">
-              Lastest Products
-            </h1>
-            <hr />
+          <div className="row">
+            <div className="col-12 mb-5">
+              <h1 className="display-6 fw-bolder text-center">
+                Lastest Products
+              </h1>
+              <hr />
+            </div>
           </div>
-        </div>
 
-        <div className="row justify-content-center ">
-          {/* <Lottie
+          <div className="row justify-content-center ">
+            {/* <Lottie
             style={{ height: 300, marginTop: "-3rem" }}
             loop={true}
             autoPlay
             animationData={ClotheLogo}
           /> */}
-          {loading ? <Loading /> : <ShowProducts />}
+            {loading ? <Loading /> : <ShowProducts />}
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };
 

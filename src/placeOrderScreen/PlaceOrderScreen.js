@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./placeOrderScreen.css";
 import { useSelector } from "react-redux";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -157,7 +158,7 @@ const PlaceOrder = () => {
               >
                 Go Back
               </button>
-              <h2 className="display-6 fw-bolder text-center">
+              <h2 className="text-black display-6 fw-bolder text-center">
                 PlacedOrder Items{" "}
               </h2>
               <hr />

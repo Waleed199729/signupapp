@@ -1,0 +1,38 @@
+.footer {
+  /* background-color: black; */
+  background-image: linear-gradient(
+    90deg,
+    rgb(81, 206, 202),
+    rgb(223, 197, 197)
+  );
+
+  margin-top: 5rem;
+}
+
+.text-uppercase {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 500;
+}
+.row-footer {
+  width: 100%;
+  display: flex;
+  padding: 45px;
+}
+.footer-paragraph > :nth-child(2) {
+  text-align: justify;
+  color: black;
+}
+
+.text-uppercase {
+  color: black;
+}
+.footer-copyright {
+  color: black;
+}
+.footer-copyright > :nth-child(1) {
+  color: black;
+}
+
+.list-unstyled {
+  color: black;
+}

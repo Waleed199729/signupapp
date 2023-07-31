@@ -1,7 +1,6 @@
-/* .container {
-  padding: 0;
-  margin: 0;
-} */
+.cart_container {
+  font-family: "Hanalei Fill", cursive;
+}
 
 .popup-container {
   display: flex;
@@ -27,6 +26,33 @@ h3 {
   justify-content: center;
 }
 
+.quantity_btn_container {
+  display: flex;
+
+  align-items: center;
+}
+
+.increment_buton,
+.decrement_buton {
+  margin: 0rem 0.3rem -0.7rem 0.1rem;
+  padding: 10px 10px 10px 10px;
+  float: inline-start;
+  justify-content: first baseline;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  outline: none;
+
+  /* padding: 2rem 2rem 2rem 2rem; */
+}
+
+.increment_buton:hover,
+.decrement_buton:hover {
+  background-color: #c9d51f;
+  color: black;
+}
+
 input[type="text"] {
   width: 100%;
   padding: 5px;
@@ -42,6 +68,3 @@ input[type="text"] {
 .button {
   margin-top: 20px;
 }
-
-/* .btn {
-    /* Add your button styles here */
